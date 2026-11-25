@@ -1,0 +1,33 @@
+[Unit]
+Description=QyroBot Personal & Team Cloud-AI Orchestrator (v1.7.0)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=qyrobot
+Group=qyrobot
+WorkingDirectory=/opt/qyrobot
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=TZ=Asia/Jakarta
+EnvironmentFile=-/etc/qyrobot/qyrobot.env
+ExecStart=/usr/bin/npx tsx /opt/qyrobot/server.ts
+Restart=on-failure
+RestartSec=5
+
+# cgroups v2 Resource Guardrails (PRD v1.7.0 §13.1 — AMD64 & Oracle Ampere ARM64)
+MemoryHigh=1536M
+MemoryMax=2048M
+CPUQuota=150%
+TasksMax=256
+
+# Hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/qyrobot/data /opt/qyrobot/configs /var/lib/qyrobot
+
+[Install]
+WantedBy=multi-user.target

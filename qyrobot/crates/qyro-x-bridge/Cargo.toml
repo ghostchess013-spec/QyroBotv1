@@ -1,0 +1,15 @@
+[package]
+name = "qyro-x-bridge"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Free Self-Auth X / Twitter Engine + 6-Layer Anti-Ban Shield + Dynamic Bundle Extractor"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+regex.workspace = true
+sha2.workspace = true
+hex.workspace = true

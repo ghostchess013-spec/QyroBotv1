@@ -1,0 +1,13 @@
+# Build-dependent remote provider profile (PRD v1.7.0 §14.2)
+# Endpoint MUST remain UNSET until configured by the user with a remote HTTPS vLLM-Omni URL.
+# Localhost, 127.0.0.0/8, ::1, and RFC1918 local inference ports are hard-blocked at runtime.
+
+[provider]
+id = "voxcpm2-cloud"
+name = "VoxCPM2 Remote Cloud (vLLM-Omni)"
+protocol = "openai_audio_voxcpm2"
+endpoint = "UNSET"
+tier = "free"
+sample_rate_hz = 48000
+languages = ["id-ID", "en-US", "zh-CN", "ja-JP", "ko-KR", "ms-MY"]
+local_execution_allowed = false

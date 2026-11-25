@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "status": "UNSET",
+  "source": "UNSET",
+  "bundle_hash": "UNSET",
+  "extracted_at": null,
+  "query_ids": "UNSET",
+  "feature_switches": "UNSET",
+  "notes": "PRD v1.7.0 §11 & §14.2: Zero hardcoded X GraphQL queryIds. Extract dynamically from live x.com client JS bundles after Self-Auth Takeover login."
+}

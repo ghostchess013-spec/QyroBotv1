@@ -1,0 +1,13 @@
+[package]
+name = "tauri-plugin-qyro-share"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Android Share Sheet (ACTION_SEND / ACTION_SEND_MULTIPLE) bridge for QyroBot"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+uuid.workspace = true

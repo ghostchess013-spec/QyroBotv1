@@ -1,0 +1,13 @@
+[package]
+name = "tauri-plugin-qyro-push"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "UnifiedPush (ntfy / Sunup) + optional FCM wake notification plugin for QyroBot Android"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+url.workspace = true

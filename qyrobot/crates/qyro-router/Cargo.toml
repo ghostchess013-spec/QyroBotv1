@@ -1,0 +1,17 @@
+[package]
+name = "qyro-router"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "verify-rtk"
+path = "src/bin/verify_rtk.rs"
+
+[dependencies]
+qyro-types = { path = "../qyro-types" }
+serde.workspace = true
+serde_json.workspace = true
+url.workspace = true
+regex.workspace = true
+thiserror.workspace = true

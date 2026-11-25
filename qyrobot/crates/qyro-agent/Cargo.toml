@@ -1,0 +1,13 @@
+[package]
+name = "qyro-agent"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+qyro-types = { path = "../qyro-types" }
+qyro-skills = { path = "../qyro-skills" }
+qyro-tools = { path = "../qyro-tools" }
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true

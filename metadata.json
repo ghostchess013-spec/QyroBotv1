@@ -1,0 +1,6 @@
+{
+  "name": "QyroBot — Phase 1 Core",
+  "description": "Proactive multi-agent AI teammate platform — Phase 1 Core Engine: SQLite Storage, Write-Only Vault, Observer Memory, Encrypted Backup, i18n (id-ID/en-US), and Cloud-Only OmniRoute Router.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

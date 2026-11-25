@@ -1,0 +1,14 @@
+[package]
+name = "qyro-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "qyro"
+path = "src/main.rs"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+qyro-scheduler = { path = "../qyro-scheduler" }

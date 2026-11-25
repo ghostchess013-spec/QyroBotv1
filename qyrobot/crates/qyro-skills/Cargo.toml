@@ -1,0 +1,14 @@
+[package]
+name = "qyro-skills"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+qyro-types = { path = "../qyro-types" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+hex.workspace = true
+regex.workspace = true
+thiserror.workspace = true

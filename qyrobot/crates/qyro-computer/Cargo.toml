@@ -1,0 +1,11 @@
+[package]
+name = "qyro-computer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+qyro-types = { path = "../qyro-types" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true

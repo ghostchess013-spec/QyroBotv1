@@ -1,0 +1,49 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/qyro-types",
+    "crates/qyro-i18n",
+    "crates/qyro-storage",
+    "crates/qyro-vault",
+    "crates/qyro-memory",
+    "crates/qyro-backup",
+    "crates/qyro-router",
+    "crates/qyro-skills",
+    "crates/qyro-tools",
+    "crates/qyro-agent",
+    "crates/qyro-computer",
+    "crates/qyro-mcp",
+    "crates/qyro-x-bridge",
+    "crates/qyro-scheduler",
+    "crates/qyro-cli",
+    "crates/qyro-server",
+    "plugins/tauri-plugin-qyro-share",
+    "plugins/tauri-plugin-qyro-device-apps",
+    "plugins/tauri-plugin-qyro-voice",
+    "plugins/tauri-plugin-qyro-push",
+    "plugins/tauri-plugin-qyro-keystore",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["QyroBot Contributors"]
+
+# Compile-time Anti-Local-Model Guard (PRD v1.7.0 §8.1):
+# Local AI inference crates (ollama, llama-cpp, candle, mistralrs, whisper-rs, etc.) are intentionally absent.
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.11", features = ["v4", "serde"] }
+rusqlite = { version = "0.32", features = ["bundled", "modern_sqlite"] }
+argon2 = "0.5"
+chacha20poly1305 = "0.10"
+rand = "0.8"
+sha2 = "0.10"
+hex = "0.4"
+base64 = "0.22"
+regex = "1.11"
+url = "2.5"

@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.7.0",
+  "filters": [
+    {
+      "id": "cargo-build-test",
+      "name": "Cargo Build & Test Noise Filter",
+      "strip_line_patterns": [
+        "^\\s*Compiling\\s+.+$",
+        "^\\s*Downloading\\s+.+$",
+        "^\\s*Downloaded\\s+.+$",
+        "^\\s*Updating\\s+crates\\.io\\s+index$",
+        "^\\s*Locking\\s+\\d+\\s+packages.+$",
+        "^\\s*Fresh\\s+.+$"
+      ],
+      "keep_line_patterns": [
+        "error(\\[E\\d+\\])?:",
+        "warning:",
+        "test result:",
+        "FAILED",
+        "Finished\\s+"
+      ],
+      "tests": [
+        {
+          "name": "strips_compiling_keeps_error",
+          "input": "   Compiling serde v1.0.210\n   Compiling tokio v1.41.0\n   Compiling qyro-router v0.1.0\nerror[E0425]: cannot find value `x` in this scope\ntest result: FAILED. 0 passed; 1 failed",
+          "must_contain": ["error[E0425]", "test result: FAILED"],
+          "must_not_contain": ["Compiling serde", "Compiling tokio"]
+        }
+      ]
+    },
+    {
+      "id": "git-status-diff",
+      "name": "Git Status & Diff Boilerplate Filter",
+      "strip_line_patterns": [
+        "^\\s*\\(use \"git .+\\)$",
+        "^index\\s+[0-9a-f]+\\.\\.[0-9a-f]+\\s+\\d+$",
+        "^\\s*$"
+      ],
+      "keep_line_patterns": [
+        "^On branch",
+        "^\\s*modified:",
+        "^\\s*new file:",
+        "^\\s*deleted:",
+        "^\\+\\+\\+|^---",
+        "^@@"
+      ],
+      "tests": [
+        {
+          "name": "strips_git_hints_keeps_modified",
+          "input": "On branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   src/core/router/engine.ts\n",
+          "must_contain": ["On branch main", "modified:   src/core/router/engine.ts"],
+          "must_not_contain": ["use \"git add", "use \"git restore"]
+        }
+      ]
+    },
+    {
+      "id": "npm-tsc-logs",
+      "name": "NPM & TypeScript Verbose Output Filter",
+      "strip_line_patterns": [
+        "^npm\\s+warn\\s+deprecated.+$",
+        "^npm\\s+notice.+$",
+        "^added\\s+\\d+\\s+packages.+$",
+        "^\\d+\\s+packages\\s+are\\s+looking\\s+for\\s+funding$"
+      ],
+      "keep_line_patterns": [
+        "error TS\\d+:",
+        "ERR!",
+        "Found \\d+ error"
+      ],
+      "tests": [
+        {
+          "name": "strips_npm_notices_keeps_ts_errors",
+          "input": "npm notice New minor version of npm available!\nnpm warn deprecated rimraf@3.0.2\nsrc/app.ts(12,5): error TS2322: Type 'number' is not assignable to type 'string'.\nFound 1 error.",
+          "must_contain": ["error TS2322", "Found 1 error."],
+          "must_not_contain": ["npm notice", "deprecated rimraf"]
+        }
+      ]
+    },
+    {
+      "id": "repetitive-json-logs",
+      "name": "Repetitive INFO/DEBUG Log Collapser",
+      "strip_line_patterns": [
+        "^\\d{4}-\\d{2}-\\d{2}T[0-9:.Z+-]+\\s+(DEBUG|TRACE)\\s+.+$",
+        "^\\{\"level\":\"(debug|trace)\".*\\}$"
+      ],
+      "keep_line_patterns": [
+        "ERROR",
+        "WARN",
+        "FATAL",
+        "\"level\":\"(error|warn)\""
+      ],
+      "tests": [
+        {
+          "name": "strips_debug_keeps_error",
+          "input": "2026-11-25T10:00:01Z DEBUG polling connection pool\n2026-11-25T10:00:02Z TRACE frame heartbeat\n2026-11-25T10:00:03Z ERROR quota exhausted for groq-cloud",
+          "must_contain": ["ERROR quota exhausted"],
+          "must_not_contain": ["DEBUG polling", "TRACE frame"]
+        }
+      ]
+    }
+  ]
+}
