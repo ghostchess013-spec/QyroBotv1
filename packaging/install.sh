@@ -35,7 +35,7 @@ mkdir -p "$INSTALL_DIR" "$DATA_DIR/data" "$DATA_DIR/configs"
 if [ -f "./package.json" ]; then
   echo "[qyrobot] Syncing workspace into $INSTALL_DIR..."
   cp -R . "$INSTALL_DIR"
-  (cd "$INSTALL_DIR" && npm ci && npm run build)
+  (cd "$INSTALL_DIR" && if [ -f package-lock.json ]; then npm ci; else npm install; fi && npm run build)
 fi
 
 if [ -f "$INSTALL_DIR/packaging/qyrobot.service" ] && [ -d "/etc/systemd/system" ] && [ "$(id -u)" -eq 0 ]; then

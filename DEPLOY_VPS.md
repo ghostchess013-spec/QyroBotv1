@@ -59,7 +59,8 @@ sudo git clone https://github.com/USERNAME/REPO_QYROBOT.git /opt/qyrobot
 
 ```bash
 cd /opt/qyrobot
-sudo npm ci
+# Gunakan npm ci jika package-lock.json ada; jika belum ada, pakai npm install
+if [ -f package-lock.json ]; then sudo npm ci; else sudo npm install; fi
 sudo npm run build
 
 # Buat direktori data & configs lalu serahkan kepemilikan ke user qyrobot
@@ -239,7 +240,7 @@ Database `data/qyrobot.db` dan `configs/` tetap aman saat update:
 ```bash
 cd /opt/qyrobot
 sudo git pull --ff-only
-sudo npm ci
+if [ -f package-lock.json ]; then sudo npm ci; else sudo npm install; fi
 sudo npm run build
 sudo chown -R qyrobot:qyrobot /opt/qyrobot
 sudo systemctl restart qyrobot.service
